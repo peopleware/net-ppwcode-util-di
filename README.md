@@ -1,4 +1,4 @@
-# PPWCode.Vernacular.Exceptions
+# PPWCode.Util.DI
 
 This library is part of the .NET PPWCode project and is a utility library that contains helper methods related to Microsoft Dependency Injection.
 
