@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\common-tests.props"/>
+
+    <ItemGroup>
+        <ProjectReference Include="..\I\PPWCode.Util.DI.I.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    </ItemGroup>
+
+</Project>

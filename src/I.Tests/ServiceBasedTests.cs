@@ -15,7 +15,7 @@ namespace PPWCode.Util.DI.I.Tests;
 
 public abstract class ServiceBasedTests : BaseFixture
 {
-    protected ServiceCollection ServiceCollection { get; } = new ();
+    protected ServiceCollection ServiceCollection { get; } = new();
     private IServiceProvider? _serviceProvider;
 
     protected IServiceProvider ServiceProvider

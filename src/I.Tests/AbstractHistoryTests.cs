@@ -60,7 +60,7 @@ public class AbstractHistoryTests : ServiceBasedTests
         ServiceCollection.AddTransient<IServiceB, ServiceB>();
 
         IFactory factory = ServiceProvider.GetRequiredService<IFactory>();
-        Context context = new ();
+        Context context = new();
         IServiceC serviceC = factory.CreateServiceC(context);
 
         Assert.That(serviceC, Is.Not.Null);
@@ -76,7 +76,7 @@ public class AbstractHistoryTests : ServiceBasedTests
         ServiceCollection.AddTransient<IFactory, Factory>();
         ServiceCollection.AddTransient<IServiceB, ServiceB>();
 
-        Context context = new ();
+        Context context = new();
         IServiceC serviceC;
         using (IServiceScope scope = ServiceProvider.CreateScope())
         {
@@ -148,7 +148,7 @@ public class AbstractHistoryTests : ServiceBasedTests
         ServiceCollection.AddTransient<IServiceB, ServiceB>();
 
         IFactory factory = ServiceProvider.GetRequiredService<IFactory>();
-        Context context = new ();
+        Context context = new();
         ServiceC? serviceC = null;
         factory.ExecuteInNewScopeUsingServiceC(
             (service, c) =>
@@ -176,7 +176,7 @@ public class AbstractHistoryTests : ServiceBasedTests
         ServiceCollection.AddTransient<IServiceB, ServiceB>();
 
         IFactory factory = ServiceProvider.GetRequiredService<IFactory>();
-        Context context = new ();
+        Context context = new();
         ServiceC? serviceC = null;
         await factory.ExecuteInNewScopeUsingServiceCAsync(
             (service, c, _) =>
