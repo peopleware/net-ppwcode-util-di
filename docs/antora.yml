@@ -1,0 +1,5 @@
+name: ppwcode-util-di-i
+version: ~
+title: PPWCode.Util.DI.I
+nav:
+  - modules/ROOT/nav.adoc
