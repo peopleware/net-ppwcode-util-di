@@ -11,6 +11,8 @@
 
 using System.Collections;
 
+using Microsoft.Extensions.DependencyInjection;
+
 using NUnit.Framework;
 
 namespace PPWCode.Util.DI.I.Tests;
@@ -49,6 +51,62 @@ public class RegistrationHelperTests : BaseFixture
     {
         IEnumerable<Type> mostSpecificInterfaces = RegistrationHelper.GetMostSpecificInterfaces(markerInterfaceType, implementationType);
         Assert.That(mostSpecificInterfaces, Is.EquivalentTo(expected));
+    }
+
+    [Test]
+    public void open_generic_registration_is_used_when_no_closed_generic_registration_exists_1()
+    {
+        // Arrange
+        IServiceCollection services = new ServiceCollection();
+        services.AddTransient(typeof(IRa<>), typeof(Ra<>));
+        services.AddTransient(typeof(IRb<>), typeof(Rb<>));
+        services.AddTransient(typeof(IRc), typeof(Rc));
+        services.AddTransient(typeof(IRd), typeof(Rd));
+        services.AddTransient(typeof(IRb<Ec>), typeof(RGenC));
+        IServiceProvider serviceProvider = services.BuildServiceProvider();
+
+        // Act
+        IRa<Ed> genericRaWithEd = serviceProvider.GetRequiredService<IRa<Ed>>();
+        IRb<Ed> genericRbWithEd = serviceProvider.GetRequiredService<IRb<Ed>>();
+        IRb<Ec> genericRbWithEc = serviceProvider.GetRequiredService<IRb<Ec>>();
+        IRc specificRc = serviceProvider.GetRequiredService<IRc>();
+
+        using (Assert.EnterMultipleScope())
+        {
+            // Assert
+            Assert.That(genericRaWithEd.GetType(), Is.EqualTo(typeof(Ra<Ed>)));
+            Assert.That(genericRbWithEd.GetType(), Is.EqualTo(typeof(Rb<Ed>)));
+            Assert.That(genericRbWithEc.GetType(), Is.EqualTo(typeof(RGenC)));
+            Assert.That(specificRc.GetType(), Is.EqualTo(typeof(Rc)));
+        }
+    }
+
+    [Test]
+    public void open_generic_registration_is_used_when_no_closed_generic_registration_exists_2()
+    {
+        // Arrange
+        IServiceCollection services = new ServiceCollection();
+        services.AddTransient(typeof(IRb<Ec>), typeof(RGenC));
+        services.AddTransient(typeof(IRd), typeof(Rd));
+        services.AddTransient(typeof(IRc), typeof(Rc));
+        services.AddTransient(typeof(IRb<>), typeof(Rb<>));
+        services.AddTransient(typeof(IRa<>), typeof(Ra<>));
+        IServiceProvider serviceProvider = services.BuildServiceProvider();
+
+        // Act
+        IRa<Ed> genericRaWithEd = serviceProvider.GetRequiredService<IRa<Ed>>();
+        IRb<Ed> genericRbWithEd = serviceProvider.GetRequiredService<IRb<Ed>>();
+        IRb<Ec> genericRbWithEc = serviceProvider.GetRequiredService<IRb<Ec>>();
+        IRc specificRc = serviceProvider.GetRequiredService<IRc>();
+
+        using (Assert.EnterMultipleScope())
+        {
+            // Assert
+            Assert.That(genericRaWithEd.GetType(), Is.EqualTo(typeof(Ra<Ed>)));
+            Assert.That(genericRbWithEd.GetType(), Is.EqualTo(typeof(Rb<Ed>)));
+            Assert.That(genericRbWithEc.GetType(), Is.EqualTo(typeof(RGenC)));
+            Assert.That(specificRc.GetType(), Is.EqualTo(typeof(Rc)));
+        }
     }
 
     // @formatter:off
