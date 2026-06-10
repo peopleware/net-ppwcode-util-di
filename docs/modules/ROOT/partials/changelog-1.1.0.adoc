@@ -10,10 +10,10 @@ This file is translated into markdown and used for the release notes in the GitH
 
 === New
 
-* `RegistrationHelper`
+* `RegistrationHelper`, added in link:{github-pr}1[#1] by link:{github-user}rvdginste[@rvdginste]
 ** `GetMostSpecificInterfaces` to help with bulk registration of services
 
 
 === Changes
 
-* Use dotnet SDK `10.0.300`
+* Use dotnet SDK `10.0.301`
