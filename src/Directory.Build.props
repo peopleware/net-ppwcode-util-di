@@ -23,7 +23,7 @@
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/peopleware/net-ppwcode-util-di.git</RepositoryUrl>
 
-        <PackageTags>ppwcode util di dotnetcore netcore</PackageTags>
+        <PackageTags>ppwcode util di dotnetcore netcore gen4 gen5</PackageTags>
         <PackageProjectUrl>https://github.com/peopleware/net-ppwcode-util-di</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
