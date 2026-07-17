@@ -38,14 +38,14 @@ jobs:
       - name: Restore dependencies
         shell: bash
         run: |
-          dotnet restore PPWCode.Util.DI.sln \
+          dotnet restore PPWCode.Util.DI.slnx \
             --locked-mode \
             -p:Configuration=Release
 
       - name: Build
         shell: bash
         run: |
-          dotnet build PPWCode.Util.DI.sln \
+          dotnet build PPWCode.Util.DI.slnx \
             --configuration Release \
             --no-restore \
             -p:ContinuousIntegrationBuild=true
@@ -53,7 +53,7 @@ jobs:
       - name: Test
         shell: bash
         run: |
-          dotnet test PPWCode.Util.DI.sln \
+          dotnet test PPWCode.Util.DI.slnx \
             --configuration Release \
             --no-build \
             --verbosity normal \
@@ -224,14 +224,14 @@ jobs:
       - name: Restore dependencies
         shell: bash
         run: |
-          dotnet restore PPWCode.Util.DI.sln \
+          dotnet restore PPWCode.Util.DI.slnx \
             --locked-mode \
             -p:Configuration=Release
 
       - name: Build
         shell: bash
         run: |
-          dotnet build PPWCode.Util.DI.sln \
+          dotnet build PPWCode.Util.DI.slnx \
             --configuration Release \
             --no-restore \
             -p:ContinuousIntegrationBuild=true \
@@ -242,7 +242,7 @@ jobs:
       - name: Pack
         shell: bash
         run: |
-          dotnet pack PPWCode.Util.DI.sln \
+          dotnet pack PPWCode.Util.DI.slnx \
             --configuration Release \
             --no-build \
             --output ./artifacts \
